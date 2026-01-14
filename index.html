@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vox Patrum: Die ultimative Ausgabe</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 1. THEME VARIABLES --- */
+        :root {
+            --crimson: #7b1113;
+            --gold: #c5a05a;
+            --bg-body: #e8e4d9;
+            --bg-card: #ffffff;
+            --text-main: #2c2c2c;
+            --text-sub: #555;
+            --nav-bg: #1a1a1a;
+            --nav-active: #c5a05a;
+            --nav-inactive: #888;
+            --shadow: rgba(0,0,0,0.1);
+            --nav-height: 70px;
+        }
+
+        /* Dark Mode */
+        [data-theme="dark"] {
+            --crimson: #ff6b6b;
+            --gold: #d4af37;
+            --bg-body: #121212;
+            --bg-card: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-sub: #aaaaaa;
+            --nav-bg: #000;
+            --nav-active: #d4af37;
+            --nav-inactive: #555;
+            --shadow: rgba(0,0,0,0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            height: 100vh;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* --- 2. SPLASH SCREEN --- */
+        #splash-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #1a0505; z-index: 9999;
+            display: flex; justify-content: center; align-items: center; flex-direction: column;
+            transition: opacity 0.8s ease-out;
+        }
+        .splash-content i { color: var(--gold); animation: pulse 2s infinite; }
+        .splash-text { font-family: 'Cinzel', serif; color: #fff; margin-top: 20px; letter-spacing: 3px; animation: fadeInUp 1s ease-out; }
+        
+        @keyframes pulse { 0% { opacity: 0.5; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0.5; transform: scale(0.9); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- 3. HEADER & SEARCH --- */
+        #app-header {
+            padding: 1rem; display: flex; justify-content: space-between; align-items: center;
+            background: var(--bg-body); z-index: 500; border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .header-title { font-family: 'Cinzel'; font-weight: bold; color: var(--crimson); font-size: 1.3rem; }
+        .header-actions button { background: none; border: none; font-size: 1.2rem; color: var(--text-main); margin-left: 15px; cursor: pointer; }
+
+        #search-container { padding: 0 1rem 1rem 1rem; display: none; background: var(--bg-body); animation: slideDown 0.2s; }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        #search-input { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--gold); background: var(--bg-card); color: var(--text-main); font-family: 'Merriweather'; font-size: 1rem; }
+
+        /* --- 4. MAIN CONTENT --- */
+        #app-container {
+            flex: 1; overflow-y: auto; overflow-x: hidden;
+            position: relative; scroll-behavior: smooth;
+            padding-bottom: calc(var(--nav-height) + 20px);
+        }
+
+        .view-section { display: none; max-width: 800px; margin: 0 auto; padding: 1rem; }
+        .view-section.active { display: block; animation: fadeScale 0.3s ease-out; }
+        @keyframes fadeScale { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+        h2.topic-title {
+            font-family: 'Cinzel', serif; color: var(--crimson); font-size: 1.8rem;
+            text-align: center; margin: 0.5rem 0 2rem 0; border-bottom: 2px solid var(--gold); padding-bottom: 10px;
+        }
+
+        .quote-card {
+            background: var(--bg-card); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px var(--shadow); border-left: 5px solid var(--gold); position: relative;
+        }
+
+        .card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 1rem; }
+        .saint-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
+        .saint-info h3 { font-family: 'Cinzel'; font-size: 1rem; color: var(--crimson); font-weight: 700; }
+        .saint-info span { font-size: 0.75rem; color: var(--text-sub); display: block; }
+        .quote-text { font-style: italic; color: var(--text-main); margin-bottom: 1rem; font-size: 1.05rem; text-align: justify; }
+        .quote-source { font-size: 0.75rem; text-align: right; color: var(--text-sub); border-top: 1px solid var(--shadow); padding-top: 8px; font-weight: bold; }
+
+        .share-btn, .pdf-btn {
+            position: absolute; top: 1rem;
+            background: none; border: none;
+            font-size: 1.1rem; cursor: pointer; opacity: 0.6;
+        }
+        .share-btn { right: 1rem; color: var(--gold); }
+        .pdf-btn { right: 3rem; color: var(--crimson); }
+        .share-btn:hover, .pdf-btn:hover { opacity: 1; }
+
+        /* --- 5. SCROLLABLE NAVIGATION --- */
+        nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: var(--nav-height);
+            background-color: var(--nav-bg); z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease-in-out;
+        }
+        nav.nav-hidden { transform: translateY(100%); }
+
+        /* Scrollable container for buttons */
+        .nav-scroller {
+            display: flex;
+            overflow-x: auto;
+            height: 100%;
+            align-items: center;
+            padding: 0 10px;
+            /* Hide Scrollbar */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE */
+        }
+        .nav-scroller::-webkit-scrollbar { display: none; /* Chrome/Safari */ }
+
+        nav button {
+            background: none; border: none; color: var(--nav-inactive);
+            font-family: 'Cinzel'; font-size: 0.65rem;
+            display: flex; flex-direction: column; align-items: center; gap: 5px;
+            min-width: 80px; /* Force width so they scroll */
+            flex-shrink: 0; /* Prevent squishing */
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        nav button i { font-size: 1.3rem; }
+        nav button.active { color: var(--nav-active); }
+        nav button.active i { transform: translateY(-3px); }
+
+        /* Toast */
+        #toast {
+            visibility: hidden; background-color: #333; color: #fff; text-align: center;
+            border-radius: 50px; padding: 10px 20px; position: fixed; z-index: 2000;
+            left: 50%; bottom: 90px; transform: translateX(-50%); font-family: 'Cinzel';
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); opacity: 0; transition: opacity 0.3s;
+            font-size: 0.9rem; pointer-events: none;
+        }
+        #toast.show { visibility: visible; opacity: 1; }
+
+        /* Tablet/Desktop */
+        @media (min-width: 769px) {
+            nav { top: 0; bottom: auto; height: 80px; }
+            nav.nav-hidden { transform: translateY(-100%); }
+            #app-container { padding-top: 80px; }
+            #app-header { display: none; }
+            .nav-scroller { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="splash-content">
+            <i class="fa-solid fa-cross fa-4x"></i>
+            <div class="splash-text">VOX PATRUM</div>
+        </div>
+    </div>
+
+    <div id="toast">Thema geändert</div>
+
+    <div id="app-header">
+        <div class="header-title">Vox Patrum</div>
+        <div class="header-actions">
+            <button onclick="toggleSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button onclick="toggleTheme()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+        </div>
+    </div>
+    
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Weisheit suchen..." onkeyup="performSearch()">
+    </div>
+
+    <div id="app-container">
+        
+        <section id="view-home" class="view-section active">
+            <div style="text-align: center; padding: 3rem 1rem;">
+                <h1 style="font-family: 'Cinzel'; font-size: 2.5rem; color: var(--crimson); margin-bottom: 0.5rem;">Vox Patrum</h1>
+                <p style="color: var(--gold); font-family: 'Cinzel'; margin-bottom: 3rem;">Die Weisheit der Zeitalter</p>
+                <div style="opacity: 0.6; margin-bottom: 3rem;">
+                    <i class="fa-solid fa-hand-pointer fa-2x" style="color: var(--text-main);"></i>
+                    <p style="margin-top:10px; font-size: 0.9rem;">Wischen Sie nach links oder rechts, um das Thema zu wechseln</p>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-sub);">
+                    <p>Wischen Sie im unteren Menü, um weitere Themen zu sehen.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-eucharist" class="view-section">
+            <h2 class="topic-title">Die Eucharistie</h2>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(2)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/augustinus_von_hippo.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Hl. Augustinus von Hippo</h3><span>(ca. 415 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Dieses Brot, das du auf dem Altar sehen kannst, geheiligt durch das Wort Gottes, ist der Leib Christi. Dieser Kelch, oder vielmehr was der Kelch enthält, geheiligt durch das Wort Gottes, ist das Blut Christi. Es war durch diese Dinge, dass der Herr Christus uns seinen Leib und sein Blut darstellen wollte, das er für unsere Sünden vergossen hat... Siehst du, es wird empfangen, es wird gegessen, es wird verzehrt. Wird der Leib Christi verzehrt, wird die Kirche Christi verzehrt, werden die Glieder Christi verzehrt?"</p>
+                <div class="quote-source">Predigt 227</div>
+                <br>
+                <p class="quote-text">"Was du auf dem Altar sehen kannst, hast du letzte Nacht gesehen; aber was es war, was es bedeutete, welche große Realität es im Sakrament enthielt, hattest du noch nicht gehört. Was du also sehen kannst, ist Brot und ein Kelch; das ist es, was sogar deine Augen dir sagen; aber was dein Glaube zu verstehen bittet, ist Brot der Leib Christi, der Kelch das Blut Christi. Wie kann Brot sein Leib sein? Und der Kelch, oder was der Kelch enthält, wie kann es sein Blut? Der Grund, Brüder und Schwestern, warum diese Dinge Sakramente genannt werden, ist, dass in ihnen das eine gesehen wird, das andere zu verstehen ist. Was gesehen werden kann, hat eine körperliche Erscheinung, was zu verstehen ist, bringt geistliche Frucht. Wenn du also den Leib Christi verstehen willst, höre dem Apostel zu, der den Gläubigen sagt: 'Ihr aber seid der Leib Christi und seine Glieder' (1. Kor 12,27). Wenn ihr also der Leib Christi und seine Glieder seid, ist es das Geheimnis, das euch gemeint ist, das auf den Tisch des Herrn gelegt wurde; was du empfängst, ist das Geheimnis, das dich bedeutet. Es ist auf das, was du bist, dass du mit Amen antwortest, und durch diese Antwort bekennst du deine Zustimmung. Was Du hörst, siehst du, ist 'Der Leib Christi?' und du antwortest 'Amen'. So sei ein Glied des Leibes Christi, damit dieses Amen wahr wird. ... Warum also Brot? ... Als du getauft wurdest, war es, als wärst du in einen Teig gemischt worden. Als du das Feuer des Heiligen Geistes empfangen hast, war es, als wärst du gebacken worden. Sei, was du sehen kannst, und empfange, was du bist. Das hat der Apostel über das Brot gesagt. Er hat bereits klar genug gezeigt, was wir über den Kelch verstehen sollen, auch wenn es nicht gesagt wurde... sie hatten eine Seele und ein Herz in Gott (Apg 4,32); so auch mit dem Wein. Brüder und Schwestern, erinnert euch nur daran, woraus Wein gemacht wird; viele Trauben hängen in einer Traube, aber der Saft der Trauben wird in ein Gefäß zusammengegossen."</p>
+                <div class="quote-source">Predigt 272</div>
+                <br>
+                <p class="quote-text">"'Und wurde in Seinen Eigenen Händen getragen': wie 'in Seinen Eigenen Händen getragen'? Denn als Er Seinen Eigenen Leib und Blut empfahl, nahm Er in Seine Hände, was die Gläubigen kennen; und auf eine Weise trug Er Sich selbst, als Er sprach: 'Dies ist Mein Leib.'"</p>
+                <div class="quote-source">Erklärungen zu den Psalmen, Psalm 37</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(6)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/clemens_von_alexandria.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Clemens von Alexandria</h3><span>(ca. 200 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Der Logos wird alles für das Kind, Vater und Mutter und Erzieher und Ernährer. 'Esset mein Fleisch', so steht geschrieben, 'und trinkt mein Blut!' Diese für uns geeignete Nahrung spendet der Herr, und Er reicht sein Fleisch dar und vergießt sein Blut; und nichts fehlt den Kindern zum Wachstum."</p>
+                <div class="quote-source">Der Erzieher, Buch 1</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(1)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/ignatius_von_antiochien.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Hl. Ignatius von Antiochien</h3><span>(ca. 107 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Der Fürst dieser Weltzeit will mich entführen und meinen auf Gott gerichteten Sinn verderben. Keiner nun von euch, die zugegen sind, soll ihm helfen; steht vielmehr zu mir, das heißt zu Gott. Sagt nicht ,Jesus Christus' und verlangt doch nach der Welt. Mißgunst soll nicht bei euch wohnen. Selbst wenn ich persönlich euch auffordere, so gehorcht mir nicht; gehorcht vielmehr dem, was ich euch schreibe. Denn ich schreibe euch als einer, der lebt, sich aber in Liebe nach dem Sterben sehnt. Meine Liebe ist gekreuzigt, und in mir ist kein Feuer, das an der Materie Nahrung sucht, vielmehr ein lebendiges Wasser, das in mir redet und zu mir spricht: Komm her zum Vater! Ich freue mich nicht an vergänglicher Nahrung und den Freuden dieses Lebens. Brot Gottes will ich, das ist das Fleisch Jesu Christi, der aus dem Samen Davids stammt, und zum Trank will ich sein Blut, das ist die unvergängliche Liebe."</p>
+                <div class="quote-source">Brief an die Römer, 7</div>
+                <br>
+                <p class="quote-text">"Lasse sich niemand täuschen! Auch die himmlischen Mächte, die Herrlichkeit der Engel und die sichtbaren wie unsichtbaren Herrscher - wenn sie nicht an das Blut Christi glauben, kommt auch über sie das Gericht. Denn das Ganze ist Glaube und Liebe, die von nichts übertroffen werden. Aber auf jene achtet, die im Blick auf die uns zugekommene Gnade Jesu Christi irriger Ansicht sind, wie sie sich im Gegensatz befinden zum Sinne Gottes. Die Liebe bekümmert sie nicht, nicht die Witwe noch die Waise, nicht der Bedrückte, nicht der Gebundene oder Freigelassene, nicht der Hungernde oder der Dürstende."</p>
+                <div class="quote-source">Brief an die Smyrnäer, 6</div>
+                <br>
+                <p class="quote-text">"Von Eucharistie und Gebet halten sie sich fern, weil sie nicht bekennen, dass die Eucharistie das Fleisch unseres Erlösers Jesus Christus ist, das für unsere Sünden gelitten, das der Vater in seiner Güte auferweckt hat. Die sich nun der Gabe Gottes widersetzen, sterben an ihrem Streiten. Es wäre aber gut für sie, Liebe zu üben, damit auch sie auferstehen. So gehört es sich nun, sich von solchen Menschen fernzuhalten und weder privat noch öffentlich von ihnen zu sprechen, sich vielmehr an die Propheten zu halten, besonders aber an das Evangelium, in dem das Leiden uns kundgetan und die Auferstehung vollendet worden ist. Die Spaltungen aber flieht als den Anfang der Übel!"</p>
+                <div class="quote-source">Brief an die Smyrnäer, 7</div>
+                <br>
+                <p class="quote-text">"Folgt alle dem Bischof, wie Jesus Christus dem Vater, und dem Presbyterium wie den Aposteln; die Diakone aber achtet wie Gottes Gebot. Keiner soll etwas von kirchlichen Dingen ohne den Bischof tun. Jene Eucharistie soll als zuverlässig gelten, die unter dem Bischof oder, wem er es anvertraut, stattfindet. Wo der Bischof erscheint, da soll auch die Gemeinde sein, wie da, wo Christus Jesus sich befindet, auch die allgemeine Kirche ist. Es ist nicht erlaubt, ohne den Bischof zu taufen oder das Liebesmahl zu halten; was jener aber geprüft hat, dies ist Gott wohlgefällig, damit alles, was ihr tut, sicher und zuverlässig sei."</p>
+                <div class="quote-source">Brief an die Smyrnäer, 8</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(4)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/irenaeus_von_lyon.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Hl. Irenäus von Lyon</h3><span>(ca. 180 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Als er deshalb die Gabe des Brotes nahm, sagte er Dank und sprach: 'Das ist mein Leib'. Und ähnlich bekannte er den Kelch, der aus dieser irdischen Schöpfung stammt, als sein Blut und machte ihn zur Opfergabe des Neuen Bundes, sodass ihn die Kirche, wie sie ihn von den Aposteln empfangen hat, auf der ganzen Welt Gott darbringt, ihm, der uns ernährt, als die Erstlinge seiner Gaben im Neuen Bunde. Wie hat dann der Herr, wenn er von einem anderen Vater als die Schöpfung stammt, mit Recht jenes Brot, das zu dieser Schöpfung gehört, als seinen Leib bezeichnet und den Inhalt des Kelches als sein Blut?"</p>
+                <div class="quote-source">Gegen die Häresien, Buch 4</div>
+                <br>
+                <p class="quote-text">"Täricht in jeder Hinsicht sind die, welche die gesamte Anordnung Gottes verachten, die Heiligung des Fleisches leugnen und seine Wiedergeburt verwerfen, indem sie behaupten, dass es der Unvergänglichkeit nicht fähig sei. Wird aber dies nicht erlöst, dann hat uns der Herr auch nicht mit seinem Blutte erlöst, noch ist der eucharistische Kelch die Teilnahme an seinem Blutte, das Brot, das wir brechen, die Teilnahme an seinem Leibe? Blut stammt nämlich nur von Fleisch und Adern und der übrigen menschlichen Substanz, die das Wort Gottes in Wahrheit angenommen hat. Mit seinem Blute erlöste er uns, wie auch der Apostel sagt: 'In ihm haben wir die Erlösung, durch sein Blut Nachlass der Sünden'. Und da wir seine Glieder sind, werden wir durch seine Schöpfung ernährt werden, und Er selbst gewährt uns seine Schöpfung: lässt seine Sonne aufgehen und regnen, sagt, dass Er uns den Kelch von seiner Schöpfung als sein eigenes Blut reiche, mit dem Er unser Blut erquickt, und versichert, dass das Brot seiner Schöpfung sein eigener Leib ist, mit dem Er unsere Leiber erhebt."</p>
+                <div class="quote-source">Gegen die Häresien, Buch 5, Kapitel 2</div>
+                <br>
+                <p class="quote-text">"Wenn nun also der gemischte Kelch und das zubereitete Brot das Wort Gottes aufnimmt und die Eucharistie zum Leibe Christi wird, woraus die Substanz unseres Fleisches Erhebung und Bestand erhält, wie können sie dann sagen, das Fleisch könne nicht aufnehmen die Gabe Gottes, die in dem ewigen Leben besteht, da es doch von dem Blutte und Fleische des Herrn genährt wird und sein Glied ist? So sagt auch der selige Apostel Paulus in dem Briefe an die Epheser: 'Wir sind Glieder seines Leibes, aus seinem Fleisch und seinem Gebeine'. Das sagt er nicht von einem geistigen und unsichtbaren Leibe — denn 'ein Geist hat weder Bein noch Knochen' — sondern von einem wahrhaft menschlichen Organismus, der aus Fleisch, Nerven und Knochen besteht, der von dem Kelch seines Blutes ernährt und von dem Brot seines Leibes erhoben wird. Und wie das Holz der Weinrebe, in der Erde wurzelnd, zu ihrer Zeit Frucht hervorbringt, und wie das Weizenkorn in die Erde fällt, sich auflöst und vielfältig aufersteht durch den Geist Gottes, der alles umfasst — und alsdann kommt dieses weisheitsvoll in den Gebrauch der Menschen, nimmt auf das Wort Gottes und wird zur Eucharistie, welche der Leib und das Blut Christi ist — so werden auch unsere Körper aus ihr genährt, und wenn sie in der Erde geborgen und dort aufgelöst sind, werden sie zu ihrer Zeit auferstehen, wenn das Wort Gottes ihnen verleiht, aufzuerstehen für die Herrlichkeit Gottes des Vaters. Er umgibt dieses Sterbliche mit Unsterblichkeit, schenkt dem Vergänglichen aus Gnade seine Unvergänglichkeit, da die Kraft Gottes in der Schwäche vollkommen wird, damit wir nicht in Undankbarkeit gegen Gott uns jemals hochmütig aufblähen, gleich als ob wir das Leben aus uns selbst hätten. So sollte die Erfahrung uns lehren, dass wir aus seiner Größe, nicht kraft unserer Natur ewig fortdauern, so sollten wir Gottes Herrlichkeit, wie sie ist, uns vor Augen halten und unsere eigene Schwäche nicht verkennen. Sollten wissen, was Gott vermag, und was der Mensch Gutes empfängt, sollten niemals irregchen in der wahren Erkenntnis der Wirklichkeit, d.h. des Verhältnisses zwischen Gott und den Menschen."</p>
+                <div class="quote-source">Gegen die Häresien, Buch 5, Kapitel 3</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(3)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/justin_der_maertyrer.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Hl. Justin der Märtyrer</h3><span>(ca. 155 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Diese Nahrung heißt bei uns Eucharistie. Niemand darf daran teilnehmen, als wer unsere Lehren für wahr hält, das Bad zur Nachlassung der Sünden und zur Wiedergeburt empfangen hat und nach den Weisungen Christi lebt. Denn nicht als gemeines Brot und als gemeinen Trank nehmen wir sie; sondern wie Jesus Christus, unser Erlöser, als er durch Gottes Logos Fleisch wurde, Fleisch und Blut um unseres Heiles willen angenommen hat, so sind wir belehrt worden, dass die durch ein Gebet um den Logos, der von ihm ausgeht, unter Danksagung geweihte Nahrung, mit der unser Fleisch und Blut durch Umwandlung genährt wird, Fleisch und Blut jenes fleischgewordenen Jesus sei. Denn die Apostel haben in den von ihnen stammenden Denkweisen, welche Evangelien heißen, überliefert, es sei ihnen folgende Anweisung gegeben worden: Jesus habe Brot genommen, Dank gesagt und gesprochen: 'Das tut zu meinem Gedächtnis, das ist mein Leib', und ebenso: habe er den Becher genommen, Dank gesagt und gesprochen: 'Dieses ist mein Blut', und Er habe nur ihnen davon mitgeteilt. Auch diesen Brauch haben die bösen Dämonen in den Mysterien nachgeahmt und Anleitung dazu gegeben. Dass Brot und ein Becher Wassers bei den Weihen eines neuen Jüngers unter Hersagen bestimmter Spriche hingestellt werden, das wollt ihr oder könnt ihr erfahren."</p>
+                <div class="quote-source">Erste Apologie, Kapitel 66</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(5)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/tertullian.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Tertullian</h3><span>(160-220 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Der Leib genießt das Fleisch und das Blut Christi, damit die Seele aus Gott genährt werde."</p>
+                <div class="quote-source">Über die Auferstehung des Fleisches, Kapitel 8</div>
+            </div>
+        </section>
+
+        <section id="view-trinity" class="view-section">
+            <h2 class="topic-title">Die Heilige Dreifaltigkeit</h2>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(7)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/gregor_von_nazianz.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Hl. Gregor von Nazianz</h3><span>(ca. 380 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Sobald ich den Einen fasse, werde ich vom Glanz der Drei erleuchtet; sobald ich sie unterscheide, werde ich zum Einen zurückgetragen."</p>
+                <div class="quote-source">Rede 40</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(8)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/augustinus_von_hippo.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Hl. Augustinus von Hippo</h3><span>(ca. 415 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Der Vater ist der, der liebt; der Sohn ist der Geliebte; und der Heilige Geist ist die Liebe selbst, die sie bindet. Wenn du die Liebe siehst, siehst du die Dreifaltigkeit."</p>
+                <div class="quote-source">De Trinitate, Buch VIII</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(9)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/athanasius.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Hl. Athanasius</h3><span>(ca. 330 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Denn der Sohn ist im Vater... wie der Strahl vom Licht und der Strom aus der Quelle; damit, wer immer den Sohn sieht, das sieht, was dem Vater eigen ist."</p>
+                <div class="quote-source">Reden gegen die Arianer</div>
+            </div>
+        </section>
+
+        <section id="view-mary" class="view-section">
+            <h2 class="topic-title">Thema3</h2>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(101)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/auctor_incognitus.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Auctor Incognitus</h3><span>(ca. 400 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+                <div class="quote-source">Quaelibet Scriptura</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(102)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/lorem_sanctus.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Lorem Sanctus</h3><span>(ca. 250 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                <div class="quote-source">Contra Ipsum</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(103)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/dolor_sit.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Dolor Sit</h3><span>(ca. 500 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."</p>
+                <div class="quote-source">De Sit Amet</div>
+            </div>
+        </section>
+
+        <section id="view-authority" class="view-section">
+            <h2 class="topic-title">Thema4</h2>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(104)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/consectetur_adipiscing.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Consectetur Adipiscing</h3><span>(ca. 300 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."</p>
+                <div class="quote-source">De Autoritate</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(105)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/elit_sed_do.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Elit Sed Do</h3><span>(ca. 450 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."</p>
+                <div class="quote-source">Epistulae</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(106)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/eiusmod_tempor.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Eiusmod Tempor</h3><span>(ca. 600 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."</p>
+                <div class="quote-source">Contra Haereses</div>
+            </div>
+        </section>
+
+        <section id="view-prayer" class="view-section">
+            <h2 class="topic-title">Thema5</h2>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(107)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/incidunt_ut.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Incididunt Ut</h3><span>(ca. 800 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."</p>
+                <div class="quote-source">De Oratione</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(108)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/labor_et.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Labor Et</h3><span>(ca. 900 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.</p>
+                <div class="quote-source">Vita</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(109)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/dolore_magnam.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Dolore Magnam</h3><span>(ca. 1000 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae."</p>
+                <div class="quote-source">Regula</div>
+            </div>
+        </section>
+
+        <section id="view-lastthings" class="view-section">
+            <h2 class="topic-title">Thema6</h2>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(110)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/itaque_earum.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Itaque Earum</h3><span>(ca. 1100 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p>
+                <div class="quote-source">De Novissimis</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(111)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/rerum_necessitatibus.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Rerum Necessitatibus</h3><span>(ca. 1200 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus."</p>
+                <div class="quote-source">Confessiones</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(112)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/saepe_eveniet.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Saepe Eveniet</h3><span>(ca. 1300 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet."</p>
+                <div class="quote-source">Homiliae</div>
+            </div>
+        </section>
+
+        <section id="view-scripture" class="view-section">
+            <h2 class="topic-title">Thema7</h2>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(113)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/voluptates_repudiandae.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Voluptates Repudiandae</h3><span>(ca. 1400 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p>
+                <div class="quote-source">De Scriptura</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(114)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/non_recusandae.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Non Recusandae</h3><span>(ca. 1500 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."</p>
+                <div class="quote-source">Commonitorium</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(115)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/perferendis_doloribus.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Perferendis Doloribus</h3><span>(ca. 1600 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio."</p>
+                <div class="quote-source">Epistulae</div>
+            </div>
+        </section>
+
+        <section id="view-salvation" class="view-section">
+            <h2 class="topic-title">Thema8</h2>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(116)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/asperiores_repellat.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Asperiores Repellat</h3><span>(ca. 1700 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus."</p>
+                <div class="quote-source">De Gratia</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(117)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/voluptatem_accusantium.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Voluptatem Accusantium</h3><span>(ca. 1800 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."</p>
+                <div class="quote-source">Epistula ad Philippenses</div>
+            </div>
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(118)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/doloremque_laudantium.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Doloremque Laudantium</h3><span>(ca. 1900 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."</p>
+                <div class="quote-source">Ad Corinthios</div>
+            </div>
+        </section>
+
+        <section id="view-search" class="view-section">
+            <h2 class="topic-title">Suchergebnisse</h2>
+            <div id="search-results-list"></div>
+        </section>
+    </div>
+
+    <nav>
+        <div class="nav-scroller">
+            <button onclick="switchTab('eucharist')" id="btn-eucharist"><i class="fa-solid fa-bread-slice"></i>Eucharistie</button>
+            <button onclick="switchTab('trinity')" id="btn-trinity"><i class="fa-solid fa-shapes"></i>Dreifaltigkeit</button>
+            <button onclick="switchTab('mary')" id="btn-mary"><i class="fa-solid fa-star"></i>Thema3</button>
+            <button onclick="switchTab('authority')" id="btn-authority"><i class="fa-solid fa-scale-balanced"></i>Thema4</button>
+            <button onclick="switchTab('prayer')" id="btn-prayer"><i class="fa-solid fa-hands-praying"></i>Thema5</button>
+            <button onclick="switchTab('lastthings')" id="btn-lastthings"><i class="fa-solid fa-hourglass-half"></i>Thema6</button>
+            <button onclick="switchTab('scripture')" id="btn-scripture"><i class="fa-solid fa-scroll"></i>Thema7</button>
+            <button onclick="switchTab('salvation')" id="btn-salvation"><i class="fa-solid fa-heart-circle-check"></i>Thema8</button>
+        </div>
+    </nav>
+
+    <script>
+        // --- 1. CONFIGURATION ---
+        const tabs = ['home', 'eucharist', 'trinity', 'mary', 'authority', 'prayer', 'lastthings', 'scripture', 'salvation'];
+        let currentTabIndex = 0;
+        
+        // Mapping for German Toast messages
+        const germanTopics = {
+            eucharist: 'Eucharistie',
+            trinity: 'Dreifaltigkeit',
+            mary: 'Thema3',
+            authority: 'Thema4',
+            prayer: 'Thema5',
+            lastthings: 'Thema6',
+            scripture: 'Thema7',
+            salvation: 'Thema8'
+        };
+
+        // --- 2. INITIALIZATION ---
+        window.addEventListener('load', () => {
+            // Splash Logic
+            const splash = document.getElementById('splash-screen');
+            setTimeout(() => {
+                splash.style.opacity = '0';
+                setTimeout(() => splash.style.display = 'none', 800);
+            }, 1200);
+
+            // Theme Logic
+            const savedTheme = localStorage.getItem('theme');
+            if(savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                document.getElementById('theme-icon').className = "fa-solid fa-sun";
+            }
+        });
+
+        // --- 3. TAB SWITCHING ---
+        function switchTab(tabId) {
+            if(tabId === 'search') {
+                // Don't update main index for search overlay
+                document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+                document.getElementById('view-search').classList.add('active');
+                return;
+            }
+
+            // Find index in main list
+            const index = tabs.indexOf(tabId);
+            if(index !== -1) currentTabIndex = index;
+
+            // Hide Search
+            document.getElementById('search-container').style.display = 'none';
+
+            // Hide all views
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            // Show target view
+            document.getElementById('view-' + tabId).classList.add('active');
+
+            // Update Buttons
+            document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
+            const btn = document.getElementById('btn-' + tabId);
+            if(btn) {
+                btn.classList.add('active');
+                // Scroll nav to keep button in view
+                btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+
+            // Scroll Top
+            document.getElementById('app-container').scrollTo(0, 0);
+
+            // Toast with German topic name
+            if(tabId !== 'home') showToast(germanTopics[tabId] || tabId);
+        }
+
+        // --- 4. SWIPE GESTURES (Improved) ---
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+        const appContainer = document.getElementById('app-container');
+
+        // Capture touch anywhere in container
+        appContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, {passive: true});
+
+        appContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, {passive: true});
+
+        function handleSwipe() {
+            const diffX = touchEndX - touchStartX;
+            const diffY = touchEndY - touchStartY;
+            
+            // Thresholds
+            const minSwipeDistance = 70; 
+            const maxVerticalVariance = 50; // Don't trigger if user is scrolling down
+
+            if (Math.abs(diffX) > minSwipeDistance && Math.abs(diffY) < maxVerticalVariance) {
+                if (diffX < 0) {
+                    // Swipe Left -> Next Tab
+                    if (currentTabIndex < tabs.length - 1) {
+                        switchTab(tabs[currentTabIndex + 1]);
+                    }
+                } else {
+                    // Swipe Right -> Prev Tab
+                    if (currentTabIndex > 0) {
+                        switchTab(tabs[currentTabIndex - 1]);
+                    }
+                }
+            }
+        }
+
+        // --- 5. SEARCH ---
+        function toggleSearch() {
+            const container = document.getElementById('search-container');
+            if(container.style.display === 'block') {
+                container.style.display = 'none';
+                switchTab(tabs[currentTabIndex]); // Go back to current
+            } else {
+                container.style.display = 'block';
+                switchTab('search');
+                document.getElementById('search-input').focus();
+            }
+        }
+
+        function performSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const resultsContainer = document.getElementById('search-results-list');
+            
+            resultsContainer.innerHTML = '';
+            if(query.length < 2) return;
+
+            // Search all cards in hidden sections
+            const allCards = document.querySelectorAll('section:not(#view-search) .quote-card');
+            
+            allCards.forEach(card => {
+                if(card.innerText.toLowerCase().includes(query)) {
+                    const clone = card.cloneNode(true);
+                    // Re-attach share event since onclick is copied but context matters
+                    clone.querySelector('.share-btn').onclick = function() { shareQuote(this); };
+                    // Re-attach PDF event
+                    const pdfBtn = clone.querySelector('.pdf-btn');
+                    if(pdfBtn) {
+                        const pdfNum = pdfBtn.getAttribute('onclick').match(/\d+/)[0];
+                        pdfBtn.onclick = function() { openPDF(pdfNum); };
+                    }
+                    resultsContainer.appendChild(clone);
+                }
+            });
+
+            if(resultsContainer.innerHTML === '') {
+                resultsContainer.innerHTML = '<p style="text-align:center; color:var(--text-sub); margin-top:2rem;">Keine Übereinstimmungen gefunden.</p>';
+            }
+        }
+
+        // --- 6. UTILITIES ---
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            if(body.hasAttribute('data-theme')) {
+                body.removeAttribute('data-theme');
+                icon.className = "fa-solid fa-moon";
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.className = "fa-solid fa-sun";
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById("toast");
+            t.className = "show";
+            t.innerText = msg;
+            setTimeout(() => t.className = "", 2000);
+        }
+
+        async function shareQuote(btn) {
+            const card = btn.closest('.quote-card');
+            const text = card.querySelector('.quote-text').innerText;
+            const saint = card.querySelector('.saint-info h3').innerText;
+            const source = card.querySelector('.quote-source').innerText;
+            const shareData = {
+                title: 'Katholische Weisheit',
+                text: `${text}\n\n- ${saint} (${source})`
+            };
+            try {
+                if(navigator.share) await navigator.share(shareData);
+                else {
+                    navigator.clipboard.writeText(shareData.text);
+                    showToast("In die Zwischenablage kopiert");
+                }
+            } catch(e) { console.log(e); }
+        }
+
+        function openPDF(pdfNumber) {
+            // Open PDF in a new window/tab
+            window.open(`pdfs/pdf${pdfNumber}.pdf`, '_blank');
+        }
+
+        // Auto Hide Nav on Scroll
+        let lastScrollTop = 0;
+        const nav = document.querySelector('nav');
+        appContainer.addEventListener('scroll', () => {
+            const st = appContainer.scrollTop;
+            if(Math.abs(st - lastScrollTop) > 10) {
+                if (st > lastScrollTop && st > 50) nav.classList.add('nav-hidden');
+                else nav.classList.remove('nav-hidden');
+                lastScrollTop = st;
+            }
+        });
+    </script>
+</body>
+</html>
