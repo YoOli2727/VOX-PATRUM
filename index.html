@@ -106,7 +106,7 @@
         .saint-info h3 { font-family: 'Cinzel'; font-size: 1rem; color: var(--crimson); font-weight: 700; }
         .saint-info span { font-size: 0.75rem; color: var(--text-sub); display: block; }
         .quote-text { font-style: italic; color: var(--text-main); margin-bottom: 1rem; font-size: 1.05rem; text-align: justify; }
-        .quote-source { font-size: 0.75rem; text-align: right; color: var(--text-sub); border-top: 1px solid var(--shadow); padding-top: 8px; font-weight: bold; }
+        .quote-source { font-size: 0.75rem; text-align: right; color: var(--text-sub); border-top: 1px solid var(--shadow); padding-top: 8px; font-weight: bold; margin-top: 0.5rem; }
 
         .share-btn, .pdf-btn {
             position: absolute; top: 1rem;
@@ -200,45 +200,31 @@
         <section id="view-home" class="view-section active">
             <div style="text-align: center; padding: 3rem 1rem;">
                 <h1 style="font-family: 'Cinzel'; font-size: 2.5rem; color: var(--crimson); margin-bottom: 0.5rem;">Vox Patrum</h1>
-                <p style="color: var(--gold); font-family: 'Cinzel'; margin-bottom: 3rem;">Die Weisheit der Zeitalter</p>
+                <p style="color: var(--gold); font-family: 'Cinzel'; margin-bottom: 3rem;">Die Eucharistie durch die Jahrhunderte</p>
                 <div style="opacity: 0.6; margin-bottom: 3rem;">
                     <i class="fa-solid fa-hand-pointer fa-2x" style="color: var(--text-main);"></i>
-                    <p style="margin-top:10px; font-size: 0.9rem;">Wischen Sie nach links oder rechts, um das Thema zu wechseln</p>
+                    <p style="margin-top:10px; font-size: 0.9rem;">Wischen Sie nach links oder rechts und navigieren Sie durch die Jahrhunderte.</p>
                 </div>
                 <div style="font-size: 0.8rem; color: var(--text-sub);">
-                    <p>Wischen Sie im unteren Menü, um weitere Themen zu sehen.</p>
+                    <p>Klicken Sie auf das PDF-Symbol, um die Original-Scans der Buchzitate anzusehen.</p>
                 </div>
             </div>
         </section>
 
-        <section id="view-eucharist" class="view-section">
-            <h2 class="topic-title">Die Eucharistie</h2>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(2)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/augustinus_von_hippo.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Hl. Augustinus von Hippo</h3><span>(ca. 415 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Dieses Brot, das du auf dem Altar sehen kannst, geheiligt durch das Wort Gottes, ist der Leib Christi. Dieser Kelch, oder vielmehr was der Kelch enthält, geheiligt durch das Wort Gottes, ist das Blut Christi. Es war durch diese Dinge, dass der Herr Christus uns seinen Leib und sein Blut darstellen wollte, das er für unsere Sünden vergossen hat... Siehst du, es wird empfangen, es wird gegessen, es wird verzehrt. Wird der Leib Christi verzehrt, wird die Kirche Christi verzehrt, werden die Glieder Christi verzehrt?"</p>
-                <div class="quote-source">Predigt 227</div>
-                <br>
-                <p class="quote-text">"Was du auf dem Altar sehen kannst, hast du letzte Nacht gesehen; aber was es war, was es bedeutete, welche große Realität es im Sakrament enthielt, hattest du noch nicht gehört. Was du also sehen kannst, ist Brot und ein Kelch; das ist es, was sogar deine Augen dir sagen; aber was dein Glaube zu verstehen bittet, ist Brot der Leib Christi, der Kelch das Blut Christi. Wie kann Brot sein Leib sein? Und der Kelch, oder was der Kelch enthält, wie kann es sein Blut? Der Grund, Brüder und Schwestern, warum diese Dinge Sakramente genannt werden, ist, dass in ihnen das eine gesehen wird, das andere zu verstehen ist. Was gesehen werden kann, hat eine körperliche Erscheinung, was zu verstehen ist, bringt geistliche Frucht. Wenn du also den Leib Christi verstehen willst, höre dem Apostel zu, der den Gläubigen sagt: 'Ihr aber seid der Leib Christi und seine Glieder' (1. Kor 12,27). Wenn ihr also der Leib Christi und seine Glieder seid, ist es das Geheimnis, das euch gemeint ist, das auf den Tisch des Herrn gelegt wurde; was du empfängst, ist das Geheimnis, das dich bedeutet. Es ist auf das, was du bist, dass du mit Amen antwortest, und durch diese Antwort bekennst du deine Zustimmung. Was Du hörst, siehst du, ist 'Der Leib Christi?' und du antwortest 'Amen'. So sei ein Glied des Leibes Christi, damit dieses Amen wahr wird. ... Warum also Brot? ... Als du getauft wurdest, war es, als wärst du in einen Teig gemischt worden. Als du das Feuer des Heiligen Geistes empfangen hast, war es, als wärst du gebacken worden. Sei, was du sehen kannst, und empfange, was du bist. Das hat der Apostel über das Brot gesagt. Er hat bereits klar genug gezeigt, was wir über den Kelch verstehen sollen, auch wenn es nicht gesagt wurde... sie hatten eine Seele und ein Herz in Gott (Apg 4,32); so auch mit dem Wein. Brüder und Schwestern, erinnert euch nur daran, woraus Wein gemacht wird; viele Trauben hängen in einer Traube, aber der Saft der Trauben wird in ein Gefäß zusammengegossen."</p>
-                <div class="quote-source">Predigt 272</div>
-                <br>
-                <p class="quote-text">"'Und wurde in Seinen Eigenen Händen getragen': wie 'in Seinen Eigenen Händen getragen'? Denn als Er Seinen Eigenen Leib und Blut empfahl, nahm Er in Seine Hände, was die Gläubigen kennen; und auf eine Weise trug Er Sich selbst, als Er sprach: 'Dies ist Mein Leib.'"</p>
-                <div class="quote-source">Erklärungen zu den Psalmen, Psalm 37</div>
+        <!-- 1. Jahrhundert -->
+        <section id="view-c1" class="view-section">
+            <h2 class="topic-title">1. Jahrhundert</h2>
+            <div style="text-align: center; color: var(--text-sub); padding: 2rem;">
+                <i class="fa-solid fa-scroll fa-3x" style="margin-bottom: 1rem; opacity: 0.5;"></i>
+                <p>Noch keine direkten Zitate über die Eucharistie im 1. Jahrhundert vorhanden. Schauen Sie sich die übrigen Jahrhunderten an!</p>
             </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(6)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/clemens_von_alexandria.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Clemens von Alexandria</h3><span>(ca. 200 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Der Logos wird alles für das Kind, Vater und Mutter und Erzieher und Ernährer. 'Esset mein Fleisch', so steht geschrieben, 'und trinkt mein Blut!' Diese für uns geeignete Nahrung spendet der Herr, und Er reicht sein Fleisch dar und vergießt sein Blut; und nichts fehlt den Kindern zum Wachstum."</p>
-                <div class="quote-source">Der Erzieher, Buch 1</div>
-            </div>
+        </section>
+
+        <!-- 2. Jahrhundert -->
+        <section id="view-c2" class="view-section">
+            <h2 class="topic-title">2. Jahrhundert</h2>
+            
+            <!-- Ignatius -->
             <div class="quote-card">
                 <button class="pdf-btn" onclick="openPDF(1)"><i class="fa-solid fa-file-pdf"></i></button>
                 <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
@@ -246,34 +232,14 @@
                     <img src="profilbilder/ignatius_von_antiochien.jpg" class="saint-avatar">
                     <div class="saint-info"><h3>Hl. Ignatius von Antiochien</h3><span>(ca. 107 n. Chr.)</span></div>
                 </div>
-                <p class="quote-text">"Der Fürst dieser Weltzeit will mich entführen und meinen auf Gott gerichteten Sinn verderben. Keiner nun von euch, die zugegen sind, soll ihm helfen; steht vielmehr zu mir, das heißt zu Gott. Sagt nicht ,Jesus Christus' und verlangt doch nach der Welt. Mißgunst soll nicht bei euch wohnen. Selbst wenn ich persönlich euch auffordere, so gehorcht mir nicht; gehorcht vielmehr dem, was ich euch schreibe. Denn ich schreibe euch als einer, der lebt, sich aber in Liebe nach dem Sterben sehnt. Meine Liebe ist gekreuzigt, und in mir ist kein Feuer, das an der Materie Nahrung sucht, vielmehr ein lebendiges Wasser, das in mir redet und zu mir spricht: Komm her zum Vater! Ich freue mich nicht an vergänglicher Nahrung und den Freuden dieses Lebens. Brot Gottes will ich, das ist das Fleisch Jesu Christi, der aus dem Samen Davids stammt, und zum Trank will ich sein Blut, das ist die unvergängliche Liebe."</p>
-                <div class="quote-source">Brief an die Römer, 7</div>
-                <br>
-                <p class="quote-text">"Lasse sich niemand täuschen! Auch die himmlischen Mächte, die Herrlichkeit der Engel und die sichtbaren wie unsichtbaren Herrscher - wenn sie nicht an das Blut Christi glauben, kommt auch über sie das Gericht. Denn das Ganze ist Glaube und Liebe, die von nichts übertroffen werden. Aber auf jene achtet, die im Blick auf die uns zugekommene Gnade Jesu Christi irriger Ansicht sind, wie sie sich im Gegensatz befinden zum Sinne Gottes. Die Liebe bekümmert sie nicht, nicht die Witwe noch die Waise, nicht der Bedrückte, nicht der Gebundene oder Freigelassene, nicht der Hungernde oder der Dürstende."</p>
+                <p class="quote-text">"Lasse sich niemand täuschen! Auch die himmlischen Mächte, die Herrlichkeit der Engel und die sichtbaren wie unsichtbaren Herrscher - wenn sie nicht an das Blut Christi glauben, kommt auch über sie das Gericht. Denn das Ganze ist Glaube und Liebe, die von nichts übertroffen werden."</p>
                 <div class="quote-source">Brief an die Smyrnäer, 6</div>
                 <br>
-                <p class="quote-text">"Von Eucharistie und Gebet halten sie sich fern, weil sie nicht bekennen, dass die Eucharistie das Fleisch unseres Erlösers Jesus Christus ist, das für unsere Sünden gelitten, das der Vater in seiner Güte auferweckt hat. Die sich nun der Gabe Gottes widersetzen, sterben an ihrem Streiten. Es wäre aber gut für sie, Liebe zu üben, damit auch sie auferstehen. So gehört es sich nun, sich von solchen Menschen fernzuhalten und weder privat noch öffentlich von ihnen zu sprechen, sich vielmehr an die Propheten zu halten, besonders aber an das Evangelium, in dem das Leiden uns kundgetan und die Auferstehung vollendet worden ist. Die Spaltungen aber flieht als den Anfang der Übel!"</p>
+                <p class="quote-text">"Von Eucharistie und Gebet halten sie sich fern, weil sie nicht bekennen, dass die Eucharistie das Fleisch unseres Erlösers Jesus Christus ist, das für unsere Sünden gelitten, das der Vater in seiner Güte auferweckt hat. Die sich nun der Gabe Gottes widersetzen, sterben an ihrem Streiten."</p>
                 <div class="quote-source">Brief an die Smyrnäer, 7</div>
-                <br>
-                <p class="quote-text">"Folgt alle dem Bischof, wie Jesus Christus dem Vater, und dem Presbyterium wie den Aposteln; die Diakone aber achtet wie Gottes Gebot. Keiner soll etwas von kirchlichen Dingen ohne den Bischof tun. Jene Eucharistie soll als zuverlässig gelten, die unter dem Bischof oder, wem er es anvertraut, stattfindet. Wo der Bischof erscheint, da soll auch die Gemeinde sein, wie da, wo Christus Jesus sich befindet, auch die allgemeine Kirche ist. Es ist nicht erlaubt, ohne den Bischof zu taufen oder das Liebesmahl zu halten; was jener aber geprüft hat, dies ist Gott wohlgefällig, damit alles, was ihr tut, sicher und zuverlässig sei."</p>
-                <div class="quote-source">Brief an die Smyrnäer, 8</div>
             </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(4)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/irenaeus_von_lyon.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Hl. Irenäus von Lyon</h3><span>(ca. 180 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Als er deshalb die Gabe des Brotes nahm, sagte er Dank und sprach: 'Das ist mein Leib'. Und ähnlich bekannte er den Kelch, der aus dieser irdischen Schöpfung stammt, als sein Blut und machte ihn zur Opfergabe des Neuen Bundes, sodass ihn die Kirche, wie sie ihn von den Aposteln empfangen hat, auf der ganzen Welt Gott darbringt, ihm, der uns ernährt, als die Erstlinge seiner Gaben im Neuen Bunde. Wie hat dann der Herr, wenn er von einem anderen Vater als die Schöpfung stammt, mit Recht jenes Brot, das zu dieser Schöpfung gehört, als seinen Leib bezeichnet und den Inhalt des Kelches als sein Blut?"</p>
-                <div class="quote-source">Gegen die Häresien, Buch 4</div>
-                <br>
-                <p class="quote-text">"Täricht in jeder Hinsicht sind die, welche die gesamte Anordnung Gottes verachten, die Heiligung des Fleisches leugnen und seine Wiedergeburt verwerfen, indem sie behaupten, dass es der Unvergänglichkeit nicht fähig sei. Wird aber dies nicht erlöst, dann hat uns der Herr auch nicht mit seinem Blutte erlöst, noch ist der eucharistische Kelch die Teilnahme an seinem Blutte, das Brot, das wir brechen, die Teilnahme an seinem Leibe? Blut stammt nämlich nur von Fleisch und Adern und der übrigen menschlichen Substanz, die das Wort Gottes in Wahrheit angenommen hat. Mit seinem Blute erlöste er uns, wie auch der Apostel sagt: 'In ihm haben wir die Erlösung, durch sein Blut Nachlass der Sünden'. Und da wir seine Glieder sind, werden wir durch seine Schöpfung ernährt werden, und Er selbst gewährt uns seine Schöpfung: lässt seine Sonne aufgehen und regnen, sagt, dass Er uns den Kelch von seiner Schöpfung als sein eigenes Blut reiche, mit dem Er unser Blut erquickt, und versichert, dass das Brot seiner Schöpfung sein eigener Leib ist, mit dem Er unsere Leiber erhebt."</p>
-                <div class="quote-source">Gegen die Häresien, Buch 5, Kapitel 2</div>
-                <br>
-                <p class="quote-text">"Wenn nun also der gemischte Kelch und das zubereitete Brot das Wort Gottes aufnimmt und die Eucharistie zum Leibe Christi wird, woraus die Substanz unseres Fleisches Erhebung und Bestand erhält, wie können sie dann sagen, das Fleisch könne nicht aufnehmen die Gabe Gottes, die in dem ewigen Leben besteht, da es doch von dem Blutte und Fleische des Herrn genährt wird und sein Glied ist? So sagt auch der selige Apostel Paulus in dem Briefe an die Epheser: 'Wir sind Glieder seines Leibes, aus seinem Fleisch und seinem Gebeine'. Das sagt er nicht von einem geistigen und unsichtbaren Leibe — denn 'ein Geist hat weder Bein noch Knochen' — sondern von einem wahrhaft menschlichen Organismus, der aus Fleisch, Nerven und Knochen besteht, der von dem Kelch seines Blutes ernährt und von dem Brot seines Leibes erhoben wird. Und wie das Holz der Weinrebe, in der Erde wurzelnd, zu ihrer Zeit Frucht hervorbringt, und wie das Weizenkorn in die Erde fällt, sich auflöst und vielfältig aufersteht durch den Geist Gottes, der alles umfasst — und alsdann kommt dieses weisheitsvoll in den Gebrauch der Menschen, nimmt auf das Wort Gottes und wird zur Eucharistie, welche der Leib und das Blut Christi ist — so werden auch unsere Körper aus ihr genährt, und wenn sie in der Erde geborgen und dort aufgelöst sind, werden sie zu ihrer Zeit auferstehen, wenn das Wort Gottes ihnen verleiht, aufzuerstehen für die Herrlichkeit Gottes des Vaters. Er umgibt dieses Sterbliche mit Unsterblichkeit, schenkt dem Vergänglichen aus Gnade seine Unvergänglichkeit, da die Kraft Gottes in der Schwäche vollkommen wird, damit wir nicht in Undankbarkeit gegen Gott uns jemals hochmütig aufblähen, gleich als ob wir das Leben aus uns selbst hätten. So sollte die Erfahrung uns lehren, dass wir aus seiner Größe, nicht kraft unserer Natur ewig fortdauern, so sollten wir Gottes Herrlichkeit, wie sie ist, uns vor Augen halten und unsere eigene Schwäche nicht verkennen. Sollten wissen, was Gott vermag, und was der Mensch Gutes empfängt, sollten niemals irregchen in der wahren Erkenntnis der Wirklichkeit, d.h. des Verhältnisses zwischen Gott und den Menschen."</p>
-                <div class="quote-source">Gegen die Häresien, Buch 5, Kapitel 3</div>
-            </div>
+
+            <!-- Justin -->
             <div class="quote-card">
                 <button class="pdf-btn" onclick="openPDF(3)"><i class="fa-solid fa-file-pdf"></i></button>
                 <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
@@ -281,9 +247,28 @@
                     <img src="profilbilder/justin_der_maertyrer.jpg" class="saint-avatar">
                     <div class="saint-info"><h3>Hl. Justin der Märtyrer</h3><span>(ca. 155 n. Chr.)</span></div>
                 </div>
-                <p class="quote-text">"Diese Nahrung heißt bei uns Eucharistie. Niemand darf daran teilnehmen, als wer unsere Lehren für wahr hält, das Bad zur Nachlassung der Sünden und zur Wiedergeburt empfangen hat und nach den Weisungen Christi lebt. Denn nicht als gemeines Brot und als gemeinen Trank nehmen wir sie; sondern wie Jesus Christus, unser Erlöser, als er durch Gottes Logos Fleisch wurde, Fleisch und Blut um unseres Heiles willen angenommen hat, so sind wir belehrt worden, dass die durch ein Gebet um den Logos, der von ihm ausgeht, unter Danksagung geweihte Nahrung, mit der unser Fleisch und Blut durch Umwandlung genährt wird, Fleisch und Blut jenes fleischgewordenen Jesus sei. Denn die Apostel haben in den von ihnen stammenden Denkweisen, welche Evangelien heißen, überliefert, es sei ihnen folgende Anweisung gegeben worden: Jesus habe Brot genommen, Dank gesagt und gesprochen: 'Das tut zu meinem Gedächtnis, das ist mein Leib', und ebenso: habe er den Becher genommen, Dank gesagt und gesprochen: 'Dieses ist mein Blut', und Er habe nur ihnen davon mitgeteilt. Auch diesen Brauch haben die bösen Dämonen in den Mysterien nachgeahmt und Anleitung dazu gegeben. Dass Brot und ein Becher Wassers bei den Weihen eines neuen Jüngers unter Hersagen bestimmter Spriche hingestellt werden, das wollt ihr oder könnt ihr erfahren."</p>
+                <p class="quote-text">"Diese Nahrung heißt bei uns Eucharistie. Niemand darf daran teilnehmen, als wer unsere Lehren für wahr hält, das Bad zur Nachlassung der Sünden und zur Wiedergeburt empfangen hat und nach den Weisungen Christi lebt. Denn nicht als gemeines Brot und als gemeinen Trank nehmen wir sie; sondern wie Jesus Christus, unser Erlöser, als er durch Gottes Logos Fleisch wurde, Fleisch und Blut um unseres Heiles willen angenommen hat, so sind wir belehrt worden, dass die durch ein Gebet um den Logos, der von ihm ausgeht, unter Danksagung geweihte Nahrung, mit der unser Fleisch und Blut durch Umwandlung genährt wird, Fleisch und Blut jenes fleischgewordenen Jesus sei."</p>
                 <div class="quote-source">Erste Apologie, Kapitel 66</div>
             </div>
+
+            <!-- Irenaeus -->
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(4)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/irenaeus_von_lyon.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Hl. Irenäus von Lyon</h3><span>(ca. 180 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Täricht in jeder Hinsicht sind die, welche die gesamte Anordnung Gottes verachten, die Heiligung des Fleisches leugnen und seine Wiedergeburt verwerfen, indem sie behaupten, dass es der Unvergänglichkeit nicht fähig sei. Wird aber dies nicht erlöst, dann hat uns der Herr auch nicht mit seinem Blutte erlöst, noch ist der eucharistische Kelch die Teilnahme an seinem Blutte, das Brot, das wir brechen, die Teilnahme an seinem Leibe?."</p>
+                <div class="quote-source">Gegen die Häresien, Buch 5, Kapitel 2</div>
+            </div>
+        </section>
+
+        <!-- 3. Jahrhundert -->
+        <section id="view-c3" class="view-section">
+            <h2 class="topic-title">3. Jahrhundert</h2>
+
+            <!-- Tertullian -->
             <div class="quote-card">
                 <button class="pdf-btn" onclick="openPDF(5)"><i class="fa-solid fa-file-pdf"></i></button>
                 <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
@@ -294,243 +279,157 @@
                 <p class="quote-text">"Der Leib genießt das Fleisch und das Blut Christi, damit die Seele aus Gott genährt werde."</p>
                 <div class="quote-source">Über die Auferstehung des Fleisches, Kapitel 8</div>
             </div>
-        </section>
 
-        <section id="view-trinity" class="view-section">
-            <h2 class="topic-title">Die Heilige Dreifaltigkeit</h2>
+            <!-- Clemens von Alexandria -->
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(6)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/clemens_von_alexandria.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Clemens von Alexandria</h3><span>(ca. 200 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Der Logos wird alles für das Kind, Vater und Mutter und Erzieher und Ernährer. 'Esset mein Fleisch', so steht geschrieben, 'und trinkt mein Blut!' Diese für uns geeignete Nahrung spendet der Herr, und Er reicht sein Fleisch dar und vergießt sein Blut."</p>
+                <div class="quote-source">Der Erzieher, Buch 1</div>
+            </div>
+
+            <!-- Hippolytus -->
             <div class="quote-card">
                 <button class="pdf-btn" onclick="openPDF(7)"><i class="fa-solid fa-file-pdf"></i></button>
                 <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
                 <div class="card-header">
-                    <img src="profilbilder/gregor_von_nazianz.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Hl. Gregor von Nazianz</h3><span>(ca. 380 n. Chr.)</span></div>
+                    <img src="profilbilder/hippolytus_von_rom.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Hl. Hippolytus von Rom</h3><span>(ca. 235 n. Chr.)</span></div>
                 </div>
-                <p class="quote-text">"Sobald ich den Einen fasse, werde ich vom Glanz der Drei erleuchtet; sobald ich sie unterscheide, werde ich zum Einen zurückgetragen."</p>
-                <div class="quote-source">Rede 40</div>
+                <p class="quote-text">"„Und sie hat ihren Tisch ausgestattet:“ dies bezeichnet die verheißene Erkenntnis der Heiligen Dreifaltigkeit; es bezieht sich auch auf seinen geehrten und unbefleckten Leib und sein Blut, welche Tag für Tag am geistlichen göttlichen Tisch verwaltet und opferhaft dargebracht werden, als ein Gedächtnis jenes ersten und immer-denkwürdigen Tisches des geistlichen göttlichen Mahles."</p>
+                <div class="quote-source">Commentarii in Proverbia (Fragmenta)</div>
             </div>
+
+            <!-- Origenes -->
             <div class="quote-card">
                 <button class="pdf-btn" onclick="openPDF(8)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/origenes.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Origenes</h3><span>(ca. 240 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Früher war „im Rätsel“ (andeutungsweise) die Taufe „in der Wolke und im Meer“, nun aber ist „in sichtbarer Gestalt“ die Wiedergeburt in Wasser und Heiligem Geist. Damals war „im Rätsel“ das Manna die Speise, nun aber ist „in sichtbarer Gestalt“ das Fleisch des Wortes Gottes die wahre Speise, so wie er selbst sagt: „Denn mein Fleisch ist wahrhaft Speise und mein Blut ist wahrhaft Trank“."</p>
+                <div class="quote-source">Die Homilien zu Numeri, Homilie Nr.7</div>
+                <br>
+                <p class="quote-text">"Ein jeder also, wie er es in seinem Herzen verstanden hat.“ Seht zu, ob ihr versteht, seht zu, ob ihr es festhaltet, damit nicht etwa das Gesagte vergeht und zu nichts wird. Ich wünsche euch mit Beispielen aus euren religiösen Übungen zu ermahnen. Ihr, die ihr gewohnt seid, an den göttlichen Mysterien teilzunehmen, wisst, wenn ihr den Leib des Herrn empfangt, mit welcher Vorsicht und Verehrung ihr ihn schützt, damit nicht irgendein kleines Teilchen davon herabfalle, damit nichts von der konsekrierten Gabe verloren gehe. Denn ihr glaubt – und mit Recht –, dass ihr verantwortlich seid, wenn durch Nachlässigkeit etwas davon herabfällt. Wenn ihr aber so sorgfältig bemüht seid, seinen Leib zu bewahren, und das mit Recht, wie meint ihr dann, dass es eine geringere Schuld sei, das Wort Gottes vernachlässigt zu haben, als seinen Leib vernachlässigt zu haben?</p>
+                <div class="quote-source">Die Homilien zu Exodus, Homilie Nr.13</div>
+            </div>
+
+            <!-- Cyprian von Karthago -->
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(9)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/cyprian_von_karthago.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Hl. Cyprian von Karthago</h3><span>(ca. 250 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Die todbringenden Speisen der Götzen stoßen ihnen fast noch auf, aber während noch ihr Schlund sein Verbrechen durch den Atem und die unheilvolle Befleckung durch den Geruch verrät, wagen sie sich an den Leib des Herrn. Und doch tritt ihnen die göttliche Schrift entgegen und ruft und sagt: „Jeder Reine soll von dem Fleische essen, und jede Seele, die von dem Fleische des Heilsopfers ißt, das dem Herrn zugehört, und hat eine Unreinigkeit an sich, diese Seele soll aus ihrem Volke verschwinden“, und auch der Apostel bezeugt und sagt: „Ihr könnt nicht den Kelch des Herrn trinken und den Kelch der bösen Geister; ihr könnt nicht am Tische des Herrn teilhaben und am Tische der bösen Geister.“"</p>
+                <div class="quote-source">Über die Gefallenen (de lapsis), Kap. 15</div>
+                <br>
+                <p class="quote-text">"Ohne jedoch auf dies alles zu achten und zu merken, bevor man noch den Frevel gesühnt und das Verbrechen offen eingestanden hat, ehe noch das Gewissen durch das Opfer und die Hand des Priesters gereinigt und der Groll des empörten und drohenden Herrn versöhnt ist, tut man seinem Leibe und Blute Gewalt an, und sie vergehen sich jetzt an dem Herrn mit Hand und Mund noch mehr als damals, als sie den Herrn verleugneten."</p>
+                <div class="quote-source">Über die Gefallenen (de lapsis), Kap. 16</div>
+            </div>
+        </section>
+
+        <!-- 4. Jahrhundert -->
+        <section id="view-c4" class="view-section">
+            <h2 class="topic-title">4. Jahrhundert</h2>
+
+            <!-- Die Kirchlichen Canones -->
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(10)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/canones_apostolorum.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Kirchliche Canones der Hl. Apostel</h3><span>(ca. 300 n. Chr.)</span></div>
+                </div>
+                <p class="quote-text">"Wenn ein Bischof oder Priester oder Diakon oder ein im Priesterverzeichniß Stehender nach vollzogenem Opfer nicht communicirt, so soll er den Grund davon angeben. Ist der Grund vernünftig, soll er Verzeihung erlangen; wenn er es aber nicht sagt, so soll er exkommunizirt werden, weil er Ursächer einer Schädigung des Volkes ist."</p>
+                <div class="quote-source">Kanon 6</div>
+                <br>
+                <p class="quote-text">"Alle Gläubigen, welche in die hl. Kirche Gottes gehen und die hl. Schriften anhören, aber nicht beim Dankagungsgebet (Kanon) und der hl. Kommunion bleiben, sollen, weil in die Kirche Unordnung bringend, exkommunizirt werden."</p>
+                <div class="quote-source">Kanon 7</div>
+            </div>
+
+            <!-- Cyrill von Jerusalem -->
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(11)"><i class="fa-solid fa-file-pdf"></i></button>
+                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
+                <div class="card-header">
+                    <img src="profilbilder/cyrill_von_jerusalem.jpg" class="saint-avatar">
+                    <div class="saint-info"><h3>Hl. Cyrill von Jerusalem</h3><span>(ca. 350 n. Chr.)</span></div>
+                </div>
+                
+                <!-- I. Mystagogische Katechese -->
+                <p class="quote-text">Auch das, was in Götzentempeln und auf festlichen Märkten aufgehängt ist, sei es Fleisch oder Brot oder anderes dergleichen, gehört, weil durch Anrufung der unreinen Dämonen beschmutzt, zum Pompe des Teufels. Gleichwie nämlich das Brot und der Wein der Eucharistie vor der Anrufung der heiligen, anbetungswürdigen Dreifaltigkeit gewöhnliches Brot und gewöhnlicher Wein ist, nach der Anrufung aber das Brot zum Leibe Christi und der Wein zum Blute Christi wird, ebenso werden solche Eßwaren vom Pompe des Satans, obwohl sie von Natur aus gewöhnliche Dinge sind, durch die Anrufung der Dämonen unrein.</p>
+                <div class="quote-source">I. Mystagogische Katechese – Kapitel 7</div>
+                <br>
+
+                <!-- III. Mystagogische Katechese -->
+                <p class="quote-text">Doch darfst du ja nicht meinen, jene Salbe sei nur Salbe. Denn gleichwie das Brot der Eucharistie nach der Anrufung des Hl. Geistes nicht mehr gewöhnliches Brot ist, sondern der Leib Christi, so ist diese heilige Salbe nach der Anrufung nicht mehr einfache Salbe und nicht, wie man sagen möchte, gemein, vielmehr ist sie Gnade Christi und wirkt durch die Gegenwart von Christi Gottheit den Hl. Geist.</p>
+                <div class="quote-source">III. Mystagogische Katechese – Kapitel 3</div>
+                <br>
+
+                <!-- IV. Mystagogische Katechese -->
+                <p class="quote-text">Lesung aus dem Briefe Pauli an die Korinther: „Ich habe von dem Herrn empfangen, was ich auch euch überliefert habe usw.“ Schon diese Lehre des heiligen Paulus genügt, euch von der Wahrheit der göttlichen Geheimnisse völlig zu überzeugen, durch welche ihr gewürdigt wurdet, ein Leib und ein Blut mit Christus zu werden. Soeben rief euch nämlich Paulus zu: „In der Nacht, da unser Herr Jesus Christus verraten wurde, nahm er Brot, dankte, brach es und gab es seinen Jüngern mit den Worten: nehmet hin und esset, das ist mein Leib! Und er nahm den Kelch, dankte und sprach: nehmet hin und trinket, das ist mein Blut!“</p>
+                <br>
+                <p class="quote-text">Wenn Jesus einst zu Kana in Galiläa durch seinen Wink Wasser in Wein verwandelt hat, soll ihm dann nicht zuzutrauen sein, daß er Wein in Blut verwandelt hat? Wenn Jesus, zu irdischer Hochzeit geladen, dieses seltsame Wunder gewirkt hat, soll man dann nicht noch viel mehr zugeben, daß er den Sohn des Brautgemaches seinen Leib und sein Blut zum Genusse dargeboten hat?</p>
+                <br>
+                <p class="quote-text">Aus voller Glaubensüberzeugung wollen wir also am Leibe und Blute Christi teilnehmen! In der Gestalt des Brotes wird dir nämlich der Leib gegeben, und in der Gestalt des Weines wird dir das Blut gereicht, damit du durch den Empfang des Leibes und Blutes Christi ein Leib und ein Blut mit ihm werdest. Durch diesen Empfang werden wir Christusträger; denn sein Fleisch und sein Blut kommt in unsere Glieder.</p>
+                <br>
+                <p class="quote-text">In einem Disput mit den Juden sagte Christus einmal: „Wenn ihr mein Fleisch nicht esset und mein Blut nicht trinket, habt ihr das Leben nicht in euch.“</p>
+                <br>
+                <p class="quote-text">Im Alten Bunde hatte man Schaubrote. Doch diese Brote des Alten Bundes hatten ein Ende. Im Neuen Bunde aber gibt es ein himmlisches Brot und einen Kelch des Heiles; sie heiligen Seele und Leib.</p>
+                <br>
+                <p class="quote-text">Betrachte daher Brot und Wein nicht als rein irdische Dinge! Denn nach der Versicherung des Herrn sind sie Leib und Blut Christi. Wenn dich auch die Sinne hier im Stiche lassen: der Glaube möge dir Festigkeit geben!</p>
+                <br>
+                <p class="quote-text">Derselige David deutet dir die Kraft von Brot und Wein an, wenn er sagt: „Du hast vor meinen Augen den Tisch gedeckt gegenüber denen, welche mich bedrängen.“ Der Sinn der Worte ist: „Ehe du erschienen bist, hatten die Dämonen den Menschen den Tisch gedeckt, und zwar einen schmutzigen, unreinen, reich an teuflischer Macht. Nach dem du aber erschienen bist, o Herr, hast du vor meinen Augen den Tisch gedeckt.“ Wenn der Mensch zu Gott spricht: „Du hast vor meinen Augen den Tisch gedeckt“, was meint er darunter anders als den mystischen, geistigen Tisch, welchen uns Gott gedeckt hat gegenüber den Dämonen, d. h. zum Kampfe gegen die Dämonen? Und so ist es in der Tat. Denn während jener Tisch die Gemeinschaft mit den Dämonen verlieh, verleiht dieser die Gemeinschaft mit Gott.</p>
+                <br>
+                <p class="quote-text">„Mit Öl hast du mein Haupt gesalbt.“ Mit Öl hat er die Stirne deines Hauptes gesalbt, damit Gott dich besiegle und du „ein Ausdruck der Besiegelung, ein Heiligtum Gottes“ werdest.</p>
+                <div class="quote-source">IV. Mystagogische Katechese – Kapitel 1-9</div>
+                <br>
+
+                <!-- V. Mystagogische Katechese - Kapitel 7 -->
+                <p class="quote-text">Nachdem wir uns durch diese geistigen Lobgesänge geheiligt haben, rufen wir die Barmherzigkeit Gottes an, daß er den Hl. Geist auf die Opfergaben herabsende, um das Brot zum Leibe Christi, den Wein zum Blute Christi zu machen. Denn was der Hl. Geist berührt, ist völlig geheiligt und verwandelt.</p>
+                <div class="quote-source">V. Mystagogische Katechese – Kapitel 7</div>
+                <br>
+
+                <!-- V. Mystagogische Katechese - Kapitel 20 -->
+                <p class="quote-text">Alsdann hört ihr, wie der Psalmensänger euch mit göttlicher Melodie zur Teilnahme an den heiligen Geheimnissen einlädt und spricht: „Kostet und sehet, daß süß der Herr ist!“ Urteilet nicht nach dem Gaumen, sondern nach dem festen Glauben! Denn wer zum Mahle kommt, der wird nicht eingeladen, Brot und Wein zu kosten, sondern das Abbild des Leibes und Blutes Christi.</p>
+                <div class="quote-source">V. Mystagogische Katechese – Kapitel 20</div>
+                <br>
+
+                <!-- V. Mystagogische Katechese - Kapitel 21 -->
+                <p class="quote-text">Trittst du vor, dann darfst du nicht die Hände flach ausstrecken und nicht die Finger spreizen. Da die rechte Hand den Leib zu empfangen hat, mache die linke Hand zum Throne für denselben! Nimm den Leib Christi mit hohler Hand entgegen und erwidere: Amen! Berühre behutsam mit dem heiligen Leibe deine Augen, um sie zu heiligen! Dann genieße ihn, doch habe acht, daß dir nichts davon auf den Boden falle! Was du davon fallen ließest, wäre natürlich so viel als Verlust eines deiner eigenen Glieder.</p>
+                <div class="quote-source">V. Mystagogische Katechese – Kapitel 21</div>
+                <br>
+
+                <!-- V. Mystagogische Katechese - Kapitel 22 -->
+                <p class="quote-text">Nach der Kommunion des Leibes Christi gehe auch zum Kelch des Blutes, nicht jedoch mit ausgestreckten Händen! Verbeuge dich, sprich zur Anbetung und Verehrung das Amen und genieße, um dich zu heiligen, auch vom Blute Christi! So lange noch Feuchtigkeit auf deinen Lippen ist, berühre sie mit den Fingern und heilige (mit jener Feuchtigkeit) Augen, Stirne und die übrigen Sinne! Alsdann warte das Gebet ab, um Gott zu danken, da er dich solcher Geheimnisse gewürdigt hat!</p>
+                <div class="quote-source">V. Mystagogische Katechese – Kapitel 22</div>
+            </div>
+        </section>
+
+        <!-- 5. Jahrhundert -->
+        <section id="view-c5" class="view-section">
+            <h2 class="topic-title">5. Jahrhundert</h2>
+
+            <!-- Augustinus -->
+            <div class="quote-card">
+                <button class="pdf-btn" onclick="openPDF(2)"><i class="fa-solid fa-file-pdf"></i></button>
                 <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
                 <div class="card-header">
                     <img src="profilbilder/augustinus_von_hippo.jpg" class="saint-avatar">
                     <div class="saint-info"><h3>Hl. Augustinus von Hippo</h3><span>(ca. 415 n. Chr.)</span></div>
                 </div>
-                <p class="quote-text">"Der Vater ist der, der liebt; der Sohn ist der Geliebte; und der Heilige Geist ist die Liebe selbst, die sie bindet. Wenn du die Liebe siehst, siehst du die Dreifaltigkeit."</p>
-                <div class="quote-source">De Trinitate, Buch VIII</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(9)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/athanasius.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Hl. Athanasius</h3><span>(ca. 330 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Denn der Sohn ist im Vater... wie der Strahl vom Licht und der Strom aus der Quelle; damit, wer immer den Sohn sieht, das sieht, was dem Vater eigen ist."</p>
-                <div class="quote-source">Reden gegen die Arianer</div>
-            </div>
-        </section>
-
-        <section id="view-mary" class="view-section">
-            <h2 class="topic-title">Thema3</h2>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(101)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/auctor_incognitus.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Auctor Incognitus</h3><span>(ca. 400 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
-                <div class="quote-source">Quaelibet Scriptura</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(102)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/lorem_sanctus.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Lorem Sanctus</h3><span>(ca. 250 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                <div class="quote-source">Contra Ipsum</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(103)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/dolor_sit.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Dolor Sit</h3><span>(ca. 500 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."</p>
-                <div class="quote-source">De Sit Amet</div>
-            </div>
-        </section>
-
-        <section id="view-authority" class="view-section">
-            <h2 class="topic-title">Thema4</h2>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(104)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/consectetur_adipiscing.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Consectetur Adipiscing</h3><span>(ca. 300 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."</p>
-                <div class="quote-source">De Autoritate</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(105)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/elit_sed_do.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Elit Sed Do</h3><span>(ca. 450 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem."</p>
-                <div class="quote-source">Epistulae</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(106)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/eiusmod_tempor.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Eiusmod Tempor</h3><span>(ca. 600 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."</p>
-                <div class="quote-source">Contra Haereses</div>
-            </div>
-        </section>
-
-        <section id="view-prayer" class="view-section">
-            <h2 class="topic-title">Thema5</h2>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(107)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/incidunt_ut.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Incididunt Ut</h3><span>(ca. 800 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident."</p>
-                <div class="quote-source">De Oratione</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(108)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/labor_et.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Labor Et</h3><span>(ca. 900 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.</p>
-                <div class="quote-source">Vita</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(109)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/dolore_magnam.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Dolore Magnam</h3><span>(ca. 1000 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae."</p>
-                <div class="quote-source">Regula</div>
-            </div>
-        </section>
-
-        <section id="view-lastthings" class="view-section">
-            <h2 class="topic-title">Thema6</h2>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(110)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/itaque_earum.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Itaque Earum</h3><span>(ca. 1100 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p>
-                <div class="quote-source">De Novissimis</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(111)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/rerum_necessitatibus.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Rerum Necessitatibus</h3><span>(ca. 1200 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus."</p>
-                <div class="quote-source">Confessiones</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(112)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/saepe_eveniet.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Saepe Eveniet</h3><span>(ca. 1300 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet."</p>
-                <div class="quote-source">Homiliae</div>
-            </div>
-        </section>
-
-        <section id="view-scripture" class="view-section">
-            <h2 class="topic-title">Thema7</h2>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(113)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/voluptates_repudiandae.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Voluptates Repudiandae</h3><span>(ca. 1400 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p>
-                <div class="quote-source">De Scriptura</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(114)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/non_recusandae.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Non Recusandae</h3><span>(ca. 1500 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."</p>
-                <div class="quote-source">Commonitorium</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(115)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/perferendis_doloribus.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Perferendis Doloribus</h3><span>(ca. 1600 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio."</p>
-                <div class="quote-source">Epistulae</div>
-            </div>
-        </section>
-
-        <section id="view-salvation" class="view-section">
-            <h2 class="topic-title">Thema8</h2>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(116)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/asperiores_repellat.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Asperiores Repellat</h3><span>(ca. 1700 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus."</p>
-                <div class="quote-source">De Gratia</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(117)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/voluptatem_accusantium.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Voluptatem Accusantium</h3><span>(ca. 1800 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."</p>
-                <div class="quote-source">Epistula ad Philippenses</div>
-            </div>
-            <div class="quote-card">
-                <button class="pdf-btn" onclick="openPDF(118)"><i class="fa-solid fa-file-pdf"></i></button>
-                <button class="share-btn" onclick="shareQuote(this)"><i class="fa-solid fa-share-nodes"></i></button>
-                <div class="card-header">
-                    <img src="profilbilder/doloremque_laudantium.jpg" class="saint-avatar">
-                    <div class="saint-info"><h3>Doloremque Laudantium</h3><span>(ca. 1900 n. Chr.)</span></div>
-                </div>
-                <p class="quote-text">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."</p>
-                <div class="quote-source">Ad Corinthios</div>
+                <p class="quote-text">"Dieses Brot, das du auf dem Altar sehen kannst, geheiligt durch das Wort Gottes, ist der Leib Christi. Dieser Kelch, oder vielmehr was der Kelch enthält, geheiligt durch das Wort Gottes, ist das Blut Christi. Es war durch diese Dinge, dass der Herr Christus uns seinen Leib und sein Blut darstellen wollte, das er für unsere Sünden vergossen hat."</p>
+                <div class="quote-source">Predigt 227</div>
+                <br>
+                <p class="quote-text">"Was du auf dem Altar sehen kannst, hast du letzte Nacht gesehen; aber was es war, was es bedeutete, welche große Realität es im Sakrament enthielt, hattest du noch nicht gehört. Was du also sehen kannst, ist Brot und ein Kelch; das ist es, was sogar deine Augen dir sagen; aber was dein Glaube zu verstehen bittet, ist Brot der Leib Christi."</p>
+                <div class="quote-source">Predigt 272</div>
             </div>
         </section>
 
@@ -542,32 +441,26 @@
 
     <nav>
         <div class="nav-scroller">
-            <button onclick="switchTab('eucharist')" id="btn-eucharist"><i class="fa-solid fa-bread-slice"></i>Eucharistie</button>
-            <button onclick="switchTab('trinity')" id="btn-trinity"><i class="fa-solid fa-shapes"></i>Dreifaltigkeit</button>
-            <button onclick="switchTab('mary')" id="btn-mary"><i class="fa-solid fa-star"></i>Thema3</button>
-            <button onclick="switchTab('authority')" id="btn-authority"><i class="fa-solid fa-scale-balanced"></i>Thema4</button>
-            <button onclick="switchTab('prayer')" id="btn-prayer"><i class="fa-solid fa-hands-praying"></i>Thema5</button>
-            <button onclick="switchTab('lastthings')" id="btn-lastthings"><i class="fa-solid fa-hourglass-half"></i>Thema6</button>
-            <button onclick="switchTab('scripture')" id="btn-scripture"><i class="fa-solid fa-scroll"></i>Thema7</button>
-            <button onclick="switchTab('salvation')" id="btn-salvation"><i class="fa-solid fa-heart-circle-check"></i>Thema8</button>
+            <button onclick="switchTab('c1')" id="btn-c1"><i class="fa-solid fa-scroll"></i>1. Jhd.</button>
+            <button onclick="switchTab('c2')" id="btn-c2"><i class="fa-solid fa-scroll"></i>2. Jhd.</button>
+            <button onclick="switchTab('c3')" id="btn-c3"><i class="fa-solid fa-scroll"></i>3. Jhd.</button>
+            <button onclick="switchTab('c4')" id="btn-c4"><i class="fa-solid fa-scroll"></i>4. Jhd.</button>
+            <button onclick="switchTab('c5')" id="btn-c5"><i class="fa-solid fa-scroll"></i>5. Jhd.</button>
         </div>
     </nav>
 
     <script>
         // --- 1. CONFIGURATION ---
-        const tabs = ['home', 'eucharist', 'trinity', 'mary', 'authority', 'prayer', 'lastthings', 'scripture', 'salvation'];
+        const tabs = ['home', 'c1', 'c2', 'c3', 'c4', 'c5'];
         let currentTabIndex = 0;
         
         // Mapping for German Toast messages
         const germanTopics = {
-            eucharist: 'Eucharistie',
-            trinity: 'Dreifaltigkeit',
-            mary: 'Thema3',
-            authority: 'Thema4',
-            prayer: 'Thema5',
-            lastthings: 'Thema6',
-            scripture: 'Thema7',
-            salvation: 'Thema8'
+            c1: '1. Jahrhundert',
+            c2: '2. Jahrhundert',
+            c3: '3. Jahrhundert',
+            c4: '4. Jahrhundert',
+            c5: '5. Jahrhundert'
         };
 
         // --- 2. INITIALIZATION ---
