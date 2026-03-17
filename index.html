@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vox Patrum</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --crimson: #7b1113;
+            --gold: #c5a05a;
+            --bg-body: #e8e4d9;
+            --bg-card: #ffffff;
+            --text-main: #2c2c2c;
+            --text-sub: #555;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --crimson: #ff6b6b;
+            --gold: #d4af37;
+            --bg-body: #121212;
+            --bg-card: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-sub: #aaaaaa;
+            --shadow: rgba(0,0,0,0.5);
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background: var(--bg-body);
+            color: var(--text-main);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* SPLASH */
+        #splash-screen {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #1a0505;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .splash-content i {
+            color: var(--gold);
+            animation: pulse 2s infinite;
+        }
+
+        .splash-text {
+            font-family: 'Cinzel';
+            color: white;
+            margin-top: 20px;
+            letter-spacing: 3px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.5; transform: scale(0.9); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HEADER */
+        #app-header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-family: 'Cinzel';
+            color: var(--crimson);
+            font-weight: bold;
+        }
+
+        .header-actions button {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* MAIN (JETZT IMMER SICHTBAR) */
+        #main {
+            flex: 1;
+            padding: 2rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        #main.visible {
+            opacity: 1;
+        }
+
+        h1 {
+            font-family: 'Cinzel';
+            color: var(--crimson);
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            color: var(--gold);
+            font-family: 'Cinzel';
+            margin-bottom: 2rem;
+        }
+
+        .topics {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .topic-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px var(--shadow);
+            border-left: 5px solid var(--gold);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .topic-card:hover {
+            transform: scale(1.02);
+        }
+
+        .topic-card i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .topic-card h2 {
+            font-family: 'Cinzel';
+            color: var(--crimson);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- SPLASH -->
+<div id="splash-screen">
+    <div class="splash-content">
+        <i class="fa-solid fa-cross fa-4x"></i>
+        <div class="splash-text">VOX PATRUM</div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<div id="app-header">
+    <div class="header-title">Vox Patrum</div>
+    <div class="header-actions">
+        <button onclick="toggleTheme()">
+            <i id="theme-icon" class="fa-solid fa-moon"></i>
+        </button>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+    <h1>Vox Patrum</h1>
+    <p class="subtitle">Kirchenväter nach Themen</p>
+
+    <div class="topics">
+        <div class="topic-card" onclick="openTopic('eucharistie.html')">
+            <h2>Eucharistie</h2>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', () => {
+        const splash = document.getElementById('splash-screen');
+        const main = document.getElementById('main');
+
+        setTimeout(() => {
+            splash.style.opacity = '0';
+
+            // MAIN SOFORT EINBLENDEN (kein Delay mehr)
+            main.classList.add('visible');
+
+            setTimeout(() => {
+                splash.style.display = 'none';
+            }, 800);
+
+        }, 1200);
+
+        const savedTheme = localStorage.getItem('theme');
+        if(savedTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+            document.getElementById('theme-icon').className = "fa-solid fa-sun";
+        }
+    });
+
+    function toggleTheme() {
+        const body = document.body;
+        const icon = document.getElementById('theme-icon');
+
+        if(body.hasAttribute('data-theme')) {
+            body.removeAttribute('data-theme');
+            icon.className = "fa-solid fa-moon";
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            icon.className = "fa-solid fa-sun";
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    // SMOOTH PAGE TRANSITION 🔥
+    function openTopic(page) {
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+            window.location.href = page;
+        }, 200);
+    }
+</script>
+
+</body>
+</html>
