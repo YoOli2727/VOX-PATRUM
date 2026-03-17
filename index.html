@@ -101,7 +101,7 @@
             cursor: pointer;
         }
 
-        /* MAIN (JETZT IMMER SICHTBAR) */
+        /* MAIN */
         #main {
             flex: 1;
             padding: 2rem;
@@ -191,22 +191,33 @@
 </div>
 
 <script>
-    window.addEventListener('load', () => {
+    function showMainImmediately() {
+        document.getElementById('splash-screen').style.display = 'none';
+        document.getElementById('main').classList.add('visible');
+    }
+
+    function showSplashOnce() {
         const splash = document.getElementById('splash-screen');
         const main = document.getElementById('main');
 
-        setTimeout(() => {
-            splash.style.opacity = '0';
-
-            // MAIN SOFORT EINBLENDEN (kein Delay mehr)
-            main.classList.add('visible');
-
+        if (!sessionStorage.getItem('splashShown')) {
             setTimeout(() => {
-                splash.style.display = 'none';
-            }, 800);
+                splash.style.opacity = '0';
+                main.classList.add('visible');
+                setTimeout(() => { splash.style.display = 'none'; }, 800);
+            }, 1200);
 
-        }, 1200);
+            sessionStorage.setItem('splashShown', 'true');
+        } else {
+            showMainImmediately();
+        }
+    }
 
+    // Verwende pageshow, damit es beim Zurückgehen aus dem Cache funktioniert
+    window.addEventListener('pageshow', (event) => {
+        showSplashOnce();
+
+        // Theme laden
         const savedTheme = localStorage.getItem('theme');
         if(savedTheme === 'dark') {
             document.body.setAttribute('data-theme', 'dark');
@@ -229,7 +240,6 @@
         }
     }
 
-    // SMOOTH PAGE TRANSITION 🔥
     function openTopic(page) {
         document.body.style.opacity = "0";
         setTimeout(() => {
